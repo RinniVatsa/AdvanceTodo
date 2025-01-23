@@ -12,6 +12,7 @@ root.render( <
     <
     App / >
     <
-    /Provider> <
-    /React.StrictMode>
+
+    /Provider> < /
+    React.StrictMode >
 );
