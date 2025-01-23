@@ -1,25 +1,59 @@
-import logo from './logo.svg';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { login, logout } from './redux/slices/taskSlice';
+import TaskInput from './components/TaskInput';
+import TaskList from './components/TaskList';
+import TaskPieChart from './components/TaskPieChart';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+        const isAuthenticated = useSelector((state) => state.tasks.isAuthenticated);
+        const dispatch = useDispatch();
+
+        return ( <
+            div className = "container" >
+            <
+            h1 > To - Do Application < /h1> {!isAuthenticated ? ( <
+            button onClick = {
+                () => dispatch(login())
+            } > Login < /button>
+        ): ( <
+            >
+            <
+            button onClick = {
+                () => dispatch(logout())
+            } > Logout < /button> <
+            TaskInput / >
+            <
+            TaskList / >
+            <
+            />
+        )
+    } <
+    header className = "app-header" >
+    <
+    h1 > Task Manager < /h1> <
+    /header>
+
+
+<
+main className = "app-content" >
+    <
+    div className = "left-section" >
+    <
+    TaskPieChart / >
+    <
+    /div> <
+div className = "right-section" >
+    <
+    TaskInput / >
+    <
+    TaskList / >
+    <
+    /div> < /
+main > < /
+div >
+);
+};
 
 export default App;
